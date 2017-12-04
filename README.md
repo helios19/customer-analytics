@@ -61,8 +61,8 @@ docker run ing-direct/customer-analytics
 
 **UI**
 
-To access the UI of this application just open your favorite browser and enter `http://localhost:8080`. Make sure port `8080`
-is not uses by another process. Then you should be able to access the Customer Classification page view.
+Once the application has started, to access the UI, just open your favorite browser and enter `http://localhost:8080`. Make sure port `8080`
+is not used by another process. Then you should be able to access the Customer Classification main page.
 
 
 
@@ -86,15 +86,15 @@ Design and architecture decisions
 The solution implemented has been designed in a microservice architecture model,
 even though only one fat jar (covering both transaction resource and related summary details) has been produced.
 
-This architecture provides the application several benefits among, being loosely coupled
-with potential other services, stateless, scalable, resilent to failures.
+This type of architecture provides to the application several benefits among, being loosely coupled
+with other services, stateless, scalable and resilent to failures.
 
 Hereafter is a shortlist of the other technical aspects characterizing the application:
 
 **Microservice using Spring Boot**
 
 Spring Boot being one of the most mature framework and currently leading the trend in microservice applications,
-the decision has been made to use it along with Java given the wide support it has for this language.
+the decision has been made to use it along with Java given the wide support Spring has for this language.
 However, note that Scala or Kotlin could also have been good alternatives.
 
 **HATEAOS**
@@ -117,7 +117,7 @@ to minimize network round trips.
 
 The UI of this application has been implemented using AngularJS 1.3 for which
 the source can be found in the `resources/static` folder of this project. The UI
-pages are responsive and built using `Bootstrap` making the view net and concise enough to be easily navigated.
+pages are responsive and built using `Bootstrap` making the view net and concis.
 
 **BDD and Testability**
 
