@@ -30,8 +30,8 @@ angular.module('customerAnalytics').controller('TransactionController',
                         self.errorMessage='';
                         self.done = true;
                         self.transactions=response.data.transactions;
-                        self.classification = response.data.classification
-                        self.currentBalance = response.data.currentBalance
+                        self.classification = response.data.classification;
+                        self.currentBalance = response.data.currentBalance;
                         $scope.myForm.$setPristine();
                     },
                     function (errResponse) {
