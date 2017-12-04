@@ -13,8 +13,8 @@ in a terminal, at the root of the source folder to generate the runnable fat jar
 NB: This command will run unit and integration tests before packaging
 the fat jar. If you wish to speed up the build and discard them,
 simply add this `-x test` option to the above command. Also, take note that,
-given the list of dependencies libraries, the build process might vary from
-1 to 4 mins depending on the local gradle repository and your network bandwidth.
+given the list of third party dependencies, the build process might vary from
+1 to 4 mins depending on your local gradle repository and your network bandwidth.
 
 Then, to run the application, simply type:
 
@@ -61,21 +61,21 @@ docker run ing-direct/customer-analytics
 
 **UI**
 
-To access the UI of this application just open your browser and enter `http://localhost:8080`. Make sure port `8080`
-is not uses by any other process. Then you should be able to access the Customer Classification view filter.
+To access the UI of this application just open your favorite browser and enter `http://localhost:8080`. Make sure port `8080`
+is not uses by another process. Then you should be able to access the Customer Classification page view.
 
 
 
 Requirement assumptions
 --
 
-Given the requirements the following list of assumptions have been made while designing the solution:
+Given the provided high-level requirements the following list of assumptions have been made while designing the solution:
 
 - Even though no detailed technical requirements have been provided, the following technical points have been
 considered while implementing the solution:
 
     - Discoverability and consistency provided by HATEAOS and HAL specification
-    (only implemented for error handling and POST operation)
+    (only implemented for error handling using `VndError` response object)
     - Vulnerability of the system through common XSS attacks
     - Performance and scalability of the system
     - Testability of the system from the start through BDD
@@ -83,10 +83,11 @@ considered while implementing the solution:
 Design and architecture decisions
 --
 
-The solution provided has been designed and implemented in a microservice architecture model,
-although only one fat jar (covering both transaction resource and related summary details) has been produced.
-Yet, by approaching the design from a microservice perspective, the system will benefit from it in the long
-run (loosely coupled on other services, providing high scalability, flexibility on the technology changes and resilient to failures).
+The solution implemented has been designed in a microservice architecture model,
+even though only one fat jar (covering both transaction resource and related summary details) has been produced.
+
+This architecture provides the application several benefits among, being loosely coupled
+with potential other services, stateless, scalable, resilent to failures.
 
 Hereafter is a shortlist of the other technical aspects characterizing the application:
 
@@ -98,7 +99,7 @@ However, note that Scala or Kotlin could also have been good alternatives.
 
 **HATEAOS**
 
-HATEOAS along wit HAL specification have been used mainly for error messages and POST operation.
+HATEOAS along wit HAL specification have been used mainly for error messages using VndError response object.
 
 **Security**
 
@@ -109,15 +110,15 @@ and being used to check submitted request and header values.
 
 A particular emphasis was place on the performance aspect of the system through
 the use of NoSQL database - namely mongodb (the system is actually comprising an embedded version
-of mongodb), caching strategies (using guava cache), Optimistic concurrency (ETag),
-Pagination and result size limitation for GET operations.
+of mongodb), caching strategies (using guava cache), SPA AngularJS and localstorage
+to minimize network round trips.
 
 **SPA UI**
 
 The UI of this application has been implemented using AngularJS 1.3 for which
 the source can be found in the `resources/static` folder of this project. The UI
-style is built using `Bootstrap` making the view net and concise to be easily navigated.
+pages are responsive and built using `Bootstrap` making the view net and concise enough to be easily navigated.
 
 **BDD and Testability**
 
-The system has been coded entirely through BDD using spring-test and RESTAssured and Spock.
+The system has been coded entirely using BDD approach with spring-test and RESTAssured and Spock.
