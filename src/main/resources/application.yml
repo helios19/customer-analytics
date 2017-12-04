@@ -1,0 +1,50 @@
+spring:
+  profiles.active: default
+---
+server.port: 8080
+spring:
+  profiles: default
+  application:
+    name: customer-analytics
+# Mongodb properties
+  data:
+    mongodb.host: localhost
+    mongodb.port: 27019
+    mongodb.database: transactions
+    mongodb.uri: mongodb://localhost/transactions
+    mongo.repositories.enabled: true
+
+# Jackson properties
+  jackson:
+    date-format: yyyyMMdd
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+# cache properties
+  cache:
+    type: guava
+    guava:
+      spec: expireAfterAccess=600s
+    cache-names: transactions
+
+# service discovery properties
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+
+---
+spring:
+  profiles: test
+  data:
+    mongodb.host: localhost
+    mongodb.port: 27029
+    mongodb.database: itest
+    mongodb.uri: mongodb://localhost/itest
+
+---
+  profiles: cacheDisabled
+# Disable cache
+  cache.type: none
