@@ -27,13 +27,13 @@ spring:
       spec: expireAfterAccess=600s
     cache-names: transactions
 
-# service discovery properties
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-    healthcheck:
-      enabled: true
+## service discovery properties
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+#    healthcheck:
+#      enabled: true
 
 ---
 spring:
